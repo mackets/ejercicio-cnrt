@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %}CNRT | Consulta de países{% endblock %}</title>
+        <title>{% block title %}CNRT | Consulta de países activos{% endblock %}</title>
         {% block stylesheets %}
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
@@ -52,7 +52,7 @@
                                 <a class="nav-link" href="/paises">
 
                                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                    Paises
+                                    Paises activos
 
                                 </a>
 
@@ -80,7 +80,7 @@
                     <main>
 
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Consulta de paises</h1>
+                            <h1 class="mt-4">Consulta de paises activos</h1>
                         </div>
 
                         <!-- Tabla de países -->
@@ -101,9 +101,9 @@
                                             <tr>
 
                                                 <th>Id</th>
-                                                <th>Nombre</th>
+                                                <th>Descripcion</th>
                                                 <th>Abreviacion</th>
-                                                <th>¿Está activo?</th>
+                                                <th>¿Esta activo?</th>
 
                                             </tr>
 
@@ -139,9 +139,9 @@
 
                                     <!-- Botón de búsqueda de países activos -->
 
-                                    <div class="mt-4 mb-0">
+                                    <!--<div class="mt-4 mb-0">
                                         <div class="d-grid"><a class="btn btn-primary btn-block" href="/index">Buscar países activos</a></div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
 
