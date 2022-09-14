@@ -63,7 +63,7 @@ class DefaultController extends Controller
 
         //           Trae toda la info de la tabla País
 
-        $pais = $paisRepository->findByActivo(1);
+        $pais = $paisRepository->findAll();
 
         //           Muestra /paises
 
@@ -94,5 +94,23 @@ class DefaultController extends Controller
         return $this->render('provincias.html.twig',array('provincias'=>$provincia));
 
     }
+
+    //              Enrutamiento a /altas
+
+     /**
+     * @Route("/altas", name="altas")
+     */
+
+     //             Ruta principal
+
+     public function altas(Request $request)
+
+     {
+ 
+         //          Muestra /index
+         
+         return $this->render('alta.html.twig');
+ 
+     }
 
 }
