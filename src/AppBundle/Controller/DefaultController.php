@@ -19,7 +19,7 @@ class DefaultController extends Controller
 
      //             Ruta principal 
 
-    public function paginaPrincipal(Request $request)
+    public function paginaPrincipalAction(Request $request)
     
     {
         //          Muestra /index
@@ -37,7 +37,7 @@ class DefaultController extends Controller
 
      //             Ruta principal
 
-    public function index(Request $request)
+    public function indexAction(Request $request)
 
     {
 
@@ -54,7 +54,7 @@ class DefaultController extends Controller
      * @Route("/paises", name="paises")
      */
 
-    public function paginaPaises(Request $request)
+    public function paginaPaisesAction(Request $request)
 
     {
         //           Se captura el repositorio de la tabla en la BD
@@ -63,7 +63,7 @@ class DefaultController extends Controller
 
         //           Trae toda la info de la tabla País
 
-        $pais = $paisRepository->findAll();
+        $pais = $paisRepository->findByActivo(1);
 
         //           Muestra /paises
 
@@ -78,7 +78,7 @@ class DefaultController extends Controller
      * @Route("/provincias", name="provincias")
      */
 
-    public function paginaProvincias(Request $request)
+    public function paginaProvinciasAction(Request $request)
 
     {
         //          Se captura el repositorio de la tabla en la BD
@@ -94,23 +94,5 @@ class DefaultController extends Controller
         return $this->render('provincias.html.twig',array('provincias'=>$provincia));
 
     }
-
-    //              Enrutamiento a /altas
-
-     /**
-     * @Route("/altas", name="altas")
-     */
-
-     //             Ruta principal
-
-     public function altas(Request $request)
-
-     {
- 
-         //          Muestra /index
-         
-         return $this->render('alta.html.twig');
- 
-     }
 
 }
