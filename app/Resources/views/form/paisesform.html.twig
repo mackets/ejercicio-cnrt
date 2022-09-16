@@ -1,0 +1,49 @@
+{%- block form_row -%}
+
+    <div class="row mb-3">
+
+        <div class="col-md-6">
+
+            {{- form_label(form) -}}
+            {{- form_errors(form) -}}
+            {{- form_widget(form) -}}
+
+        </div>
+
+    </div>
+
+{%- endblock form_row -%}
+
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    <input type="{{ type }}" class="form-control"{{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple -%}
+
+{%- block button_widget -%}
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- elseif label is not same as(false) -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <div class="mt-4 mb-0">
+        <div class="d-grid"><button type="{{ type|default('button') }}" class="btn btn-primary btn-block"{{ block('button_attributes') }}>{{ translation_domain is same as(false) or label is same as(false) ? label : label|trans({}, translation_domain) }}</button></div>
+    </div>
+{%- endblock button_widget -%}
+
+{%- block choice_widget -%}
+    
+        <div class="col-md-6">
+
+            {% if expanded %}
+                {{- block('choice_widget_expanded') -}}
+            {% else %}
+                {{- block('choice_widget_collapsed') -}}
+            {% endif %}
+        </div>
+
+{%- endblock choice_widget -%}

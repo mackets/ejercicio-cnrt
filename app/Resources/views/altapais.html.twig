@@ -1,17 +1,234 @@
 <!DOCTYPE html>
 <html>
+
+    {% form_theme form 'form/paisesform.html.twig'%}
+
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}CNRT | Alta Pais{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}
-            {{form_start(form)}}
-            {{form_widget(form)}}
-            {{form_end(form)}}
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block title %}CNRT | Alta de país{% endblock %}</title>
+
+        {% block stylesheets %}
+
+            <link href="css/styles.css" rel="stylesheet" />
+            <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+        
+    </head>
+
+    <body class="sb-nav-fixed">
+
+        {% block body %}
+
+            <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+
+                <!-- Botón CNRT que lleva al index -->
+
+                <a class="navbar-brand ps-3" href="/index">CNRT - Comisión Nacional Reguladora de Transporte</a>
+
+            </nav>
+
+            <!-- Menú de consultas -->
+
+            <div id="layoutSidenav">
+
+                <div id="layoutSidenav_nav">
+                
+                    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+
+                        <div class="sb-sidenav-menu">
+
+                            <div class="nav">
+
+                                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+
+                                </div>
+
+                                <!-- Título del menú -->
+
+                                <div class="sb-sidenav-menu-heading">Consultas</div>
+
+                                <!-- Botón Países -->
+
+                                <a class="nav-link" href="/paises">
+
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-globe"></i></div>
+                                    Paises activos
+
+                                </a>
+
+                                <!-- Botón Provincias -->
+                                
+                                <a class="nav-link" href="/provincias">
+
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-globe"></i></div>
+                                    Provincias
+
+                                </a>
+
+                                <!-- División Países -->
+
+                                <div class="sb-sidenav-menu-heading">Países</div>
+
+                                <!-- Botón Altas País -->
+
+                                <a class="nav-link" href="/altapais">
+
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-pencil"></i></div>
+                                    Alta
+
+                                </a>
+
+                                <!-- Botón Bajas País -->
+
+                                <a class="nav-link" href="/bajapais">
+
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-eraser"></i></div>
+                                    Baja
+
+                                </a>
+
+                                <!-- División Provincias -->
+
+                                <div class="sb-sidenav-menu-heading">Provincias</div>
+
+                                <!-- Botón Altas Provincias -->
+
+                                <a class="nav-link" href="/provincias">
+
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-pencil"></i></div>
+                                    Alta
+
+                                </a>
+
+                                <!-- Botón Bajas Provincias -->
+
+                                <a class="nav-link" href="/provincias">
+
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-eraser"></i></div>
+                                    Baja
+
+                                </a>
+
+                            </div>
+
+                        </div>
+                        
+                    </nav>
+
+                </div>
+
+                <div id="layoutSidenav_content">
+
+                    <!-- Main de la página -->
+
+                    <main>
+
+                        <div class="container">
+
+                            <div class="row justify-content-center">
+
+                                <div class="col-lg-7">
+
+                                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+                                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Ingresar datos</h3></div>
+
+                                        <div class="card-body">
+                                        
+                                            {{form_start(form)}}
+                                            {{form_widget(form)}}
+                                            {{form_end(form)}}    
+
+                                                
+
+                                                <!--<div class="row mb-3">
+
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-floating mb-3 mb-md-0 ">
+                                                            <input class="form-control " id="inputFirstName" type="text" placeholder="Ingrese una descripción" />
+                                                            <label for="inputFirstName">Descripción</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-floating">
+                                                            <input class="form-control" id="inputLastName" type="text" placeholder="Ingrese una Abreviación" />
+                                                            <label for="inputLastName">Abreviación</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="mt-4 mb-0 text-center">
+
+                                                    <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
+                                                    <label class="form-check-label " for="inputRememberPassword">Activo</label>
+                                                    
+                                                    
+
+                                                </div> 
+
+
+                                                <div class="mt-4 mb-0">
+                                                    <div class="d-grid"><a class="btn btn-primary btn-block" href="/index">Aceptar</a></div>
+                                                </div> -->
+
+                                            
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </main>
+
+                    <!-- Pie de página -->
+
+                    <footer class="py-4 --bs-body-bg: mt-auto">
+
+                        <div class="container-fluid px-4">
+
+                            <div class="d-flex align-items-center justify-content-between small">
+                                <div class="text-muted">Copyright &copy; Julián Maciel | CNRT 2022</div>
+                            </div>
+
+                        </div>
+
+                    </footer>
+
+                </div>
+                
+            </div>
+
+        {% endblock %}
+
+        {% block javascripts %}
+
+            <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="js/scripts.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+            <script src="assets/demo/chart-area-demo.js"></script>
+            <script src="assets/demo/chart-bar-demo.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+            <script src="js/datatables-simple-demo.js"></script>
+
+        {% endblock %}
     </body>
 </html>

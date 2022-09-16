@@ -10,7 +10,7 @@ use AppBundle\Entity\Pais;
 
 class GestionPaisController extends Controller 
 {
-    //              Enrutamiento a la raíz del proyecto
+    //              Enrutamiento a alta país
 
     /**
      * @Route("/altapais", name="altapais")
@@ -50,6 +50,29 @@ class GestionPaisController extends Controller
         //     Muestra /index
  
         return $this->render('altapais.html.twig',array('form'=> $form->createView()));
+ 
+     }
+
+    //              Enrutamiento a bajaPais
+
+    /**
+     * @Route("/bajapais", name="bajapais")
+     */
+   
+
+     //             Ruta principal 
+
+     public function bajaPais(Request $request) 
+     {
+
+        $paisRepository = $this->getDoctrine()->getRepository(Pais::class);
+
+        $pais = $paisRepository->findByActivo(1);
+
+
+        //     Muestra /index
+ 
+        return $this->render('bajapais.html.twig',array('paises'=>$pais));
  
      }
 

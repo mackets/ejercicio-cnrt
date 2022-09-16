@@ -2,25 +2,24 @@
 <html>
 
     <head>
+
+        <meta charset="UTF-8" />
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{% block title %}CNRT | Altas{% endblock %}</title>
-
+        <title>{% block title %}CNRT | Baja de país{% endblock %}</title>
         {% block stylesheets %}
-
-            <link href="css/styles.css" rel="stylesheet" />
-            <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% endblock %}
-        
+
     </head>
 
     <body class="sb-nav-fixed">
-
+    
         {% block body %}
 
             <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -28,7 +27,7 @@
                 <!-- Botón CNRT que lleva al index -->
 
                 <a class="navbar-brand ps-3" href="/index">CNRT - Comisión Nacional Reguladora de Transporte</a>
-
+            
             </nav>
 
             <!-- Menú de consultas -->
@@ -36,16 +35,12 @@
             <div id="layoutSidenav">
 
                 <div id="layoutSidenav_nav">
-                
+
                     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 
                         <div class="sb-sidenav-menu">
 
                             <div class="nav">
-
-                                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-
-                                </div>
 
                                 <!-- Título del menú -->
 
@@ -61,7 +56,7 @@
                                 </a>
 
                                 <!-- Botón Provincias -->
-                                
+
                                 <a class="nav-link" href="/provincias">
 
                                     <div class="sb-nav-link-icon"><i class="fa-solid fa-globe"></i></div>
@@ -84,7 +79,7 @@
 
                                 <!-- Botón Bajas País -->
 
-                                <a class="nav-link" href="/provincias">
+                                <a class="nav-link" href="/bajapais">
 
                                     <div class="sb-nav-link-icon"><i class="fa-solid fa-eraser"></i></div>
                                     Baja
@@ -112,11 +107,13 @@
                                     Baja
 
                                 </a>
+                                    
+                                    
 
                             </div>
 
                         </div>
-                        
+                    
                     </nav>
 
                 </div>
@@ -127,71 +124,75 @@
 
                     <main>
 
-                        <div class="container">
+                        <div class="container-fluid px-4">
+                            <h1 class="mt-4">Baja de paises activos</h1>
+                        </div>
 
-                            <div class="row justify-content-center">
+                        <!-- Tabla de países -->
+                    
+                        <div class="container-fluid px-4">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-table me-1"></i>
+                                    Tabla países
+                                </div>
+                                <div class="card-body">
+                                    <table id="datatablesSimple">
 
-                                <div class="col-lg-7">
+                                        <!-- Campos de la tabla -->
 
-                                    <div class="card shadow-lg border-0 rounded-lg mt-5">
-
-                                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Ingresar datos</h3></div>
-
-                                        <div class="card-body">
+                                        <thead>
                                         
-                                            <form>
+                                            <tr>
 
-                                                <div class="row mb-3">
+                                                <th>Id</th>
+                                                <th>Descripcion</th>
+                                                <th>Abreviacion</th>
+                                                <th>¿Esta activo?</th>
 
-                                                    <div class="col-md-6">
+                                            </tr>
 
-                                                        <div class="form-floating mb-3 mb-md-0 ">
-                                                            <input class="form-control " id="inputFirstName" type="text" placeholder="Ingrese una descripción" />
-                                                            <label for="inputFirstName">Descripción</label>
-                                                        </div>
+                                        </thead>
+                                        
+                                        <!-- Contenido de las tablas -->
 
-                                                    </div>
+                                        <tbody>
 
-                                                    <div class="col-md-6">
+                                            <!-- Iteración para la consulta de paises -->
 
-                                                        <div class="form-floating">
-                                                            <input class="form-control" id="inputLastName" type="text" placeholder="Ingrese una Abreviación" />
-                                                            <label for="inputLastName">Abreviación</label>
-                                                        </div>
+                                            {% for pais in paises %}
 
-                                                    </div>
+                                                <tr>
 
-                                                </div>
+                                                    <td>{{pais.id}}</td>
+                                                    <td>{{pais.descripcion}}</td>
+                                                    <td>{{pais.abrev}}</td>
 
-                                                <div class="row mb-3">
+                                                    {% if pais.activo == 1 %}
+                                                        <td>SI</td>
+                                                    {% else %}
+                                                        <td>NO</td>
+                                                    {% endif %}
 
-                                                    <div class="col-md-6">
+                                                </tr>
+                                                
+                                            {% endfor %}
 
-                                                        <div class="form-floating mb-3 mb-md-0">
-                                                            <input class="form-control" id="inputPassword" type="text" placeholder="Ingrese estado" />
-                                                            <label for="inputPassword">Activo</label>
-                                                        </div>
+                                        </tbody>
 
-                                                    </div>
+                                    </table>
 
-                                                </div>
+                                    <!-- Botón de búsqueda de países activos -->
 
-                                                <div class="mt-4 mb-0">
-                                                    <div class="d-grid"><a class="btn btn-primary btn-block" href="/index">Aceptar</a></div>
-                                                </div>
-
-                                            </form>
-
-                                        </div>
-
-                                    </div>
+                                    <!--<div class="mt-4 mb-0">
+                                        <div class="d-grid"><a class="btn btn-primary btn-block" href="/index">Buscar países activos</a></div>
+                                    </div> -->
 
                                 </div>
 
                             </div>
 
                         </div>
-
 
                     </main>
 
@@ -210,7 +211,7 @@
                     </footer>
 
                 </div>
-                
+
             </div>
 
         {% endblock %}
@@ -227,5 +228,7 @@
             <script src="js/datatables-simple-demo.js"></script>
 
         {% endblock %}
+
     </body>
+
 </html>
