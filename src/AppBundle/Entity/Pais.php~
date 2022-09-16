@@ -3,18 +3,26 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Provincia
+ * Pais
  *
- * @ORM\Table(name="provincia", indexes={@ORM\Index(name="pais_id", columns={"pais_id"})})
+ * @ORM\Table(name="pais", uniqueConstraints={@ORM\UniqueConstraint(name="abrev", columns={"abrev"})})
  * @ORM\Entity
  */
 
-//          DECLARACIÓN TABLA PROVINCIAS
+//          DECLARACIÓN TABLA PAIS
 
-class Provincia
+class Pais
 {
+     /**
+     * @var string
+     *
+     * @ORM\OneToMany(targetEntity="Provincia", mappedBy="pais")
+     */
+    private $provincias;
+
     //  CAMPO DESCRIPCIÓN
     /**
      * @var string
@@ -23,7 +31,7 @@ class Provincia
      */
     private $descripcion;
 
-    //  CAMPO ABREVIACIÓN
+    // CAMPO ABREVIACIÓN
     /**
      * @var string
      *
@@ -49,30 +57,25 @@ class Provincia
      */
     private $id;
 
-    //CAMPO PAIS (FK)
-    /**
-     * @var \AppBundle\Entity\Pais
-     *
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Pais", inversedBy="provincias")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="pais_id", referencedColumnName="id")
-     * })
-     */
-    private $pais;
+    //  CONSTRUCCION DE LA RELACION PAIS-PROVINCIA
+
+    public function __construct()
+    {
+        $this->products=new ArrayCollection();
+    }
 
     /**
      * Set descripcion
      *
      * @param string $descripcion
      *
-     * @return Provincia
+     * @return Pais
      */
     public function setDescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
 
         return $this;
-
     }
 
     /**
@@ -92,7 +95,7 @@ class Provincia
      *
      * @param string $abrev
      *
-     * @return Provincia
+     * @return Pais
      */
     public function setAbrev($abrev)
     {
@@ -101,7 +104,7 @@ class Provincia
         return $this;
     }
 
-    /**
+     /**
      * Get abrev
      * 
      * @return string
@@ -118,9 +121,9 @@ class Provincia
      *
      * @param boolean $activo
      *
-     * @return Provincia
+     * @return Pais
      */
-    public function setActivo($activo)
+    public function setActivo(?bool $activo): self
     {
         $this->activo = $activo;
 
@@ -149,30 +152,6 @@ class Provincia
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set pais
-     *
-     * @param \AppBundle\Entity\Pais $pais
-     *
-     * @return Provincia
-     */
-    public function setPais(\AppBundle\Entity\Pais $pais = null)
-    {
-        $this->pais = $pais;
-
-        return $this;
-    }
-
-    /**
-     * Get pais
-     *
-     * @return \AppBundle\Entity\Pais
-     */
-    public function getPais()
-    {
-        return $this->pais;
     }
 
 }

@@ -53,7 +53,7 @@ class Provincia
     /**
      * @var \AppBundle\Entity\Pais
      *
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Pais", inversedBy="provincias")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Pais", inversedBy="provincias")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="pais_id", referencedColumnName="id")
      * })

@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Form\PaisType;
+use AppBundle\Form\ProvinciaType;
 use AppBundle\Entity\Pais;
 use AppBundle\Entity\Provincia;
 

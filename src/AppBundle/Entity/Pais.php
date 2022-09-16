@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Pais
@@ -15,6 +16,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 class Pais
 {
+     /**
+     * @var string
+     *
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Provincia", mappedBy="pais")
+     */
+    private $provincias;
+
     //  CAMPO DESCRIPCIÓN
     /**
      * @var string
@@ -48,6 +56,13 @@ class Pais
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    //  CONSTRUCCION DE LA RELACION PAIS-PROVINCIA
+
+    public function __construct()
+    {
+        $this->products=new ArrayCollection();
+    }
 
     /**
      * Set descripcion
@@ -139,5 +154,32 @@ class Pais
         return $this->id;
     }
 
-}
+    /**
+     * Set provincias
+     * 
+     * @return \Doctrine\Common\Collections\Collection
+     *
+     */
 
+    public function setProvincia(\AppBundle\Entity\Provincia $provincia)
+    {
+        $this->provincias[] = $provincia;
+        return $this;
+    }
+
+    
+    /**
+     * Get provincias
+     * 
+     * @return \Doctrine\Common\Collections\Collection
+     *
+     */
+
+    public function getProvincia()
+    {
+        return $this->provincias;
+    }
+
+
+
+}
