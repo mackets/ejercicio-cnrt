@@ -180,6 +180,13 @@ class Pais
         return $this->provincias;
     }
 
+    //Convertir a string
+
+    public function __toString(){
+
+        return $this->descripcion;
+
+    }
 
 
 }
