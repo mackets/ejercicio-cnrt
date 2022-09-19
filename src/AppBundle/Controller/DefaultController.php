@@ -89,7 +89,7 @@ class DefaultController extends Controller
 
         //          Trae toda la info de la tabla Provincia
 
-        $provincia = $provinciaRepository->findAll();
+        $provincia = $provinciaRepository->findByActivo(1);
         
         //          Muestra /provincias
 

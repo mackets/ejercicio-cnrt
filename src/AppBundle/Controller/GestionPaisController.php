@@ -122,4 +122,25 @@ class GestionPaisController extends Controller
  
      }
 
+     //              Enrutamiento a bajaProvincia
+
+    /**
+     * @Route("/bajaprovincia", name="bajaprovincia")
+     */
+
+
+    public function bajaProvincia(Request $request) 
+    {
+
+       $provinciaRepository = $this->getDoctrine()->getRepository(Provincia::class);
+
+       $provincia = $provinciaRepository->findByActivo(1);
+
+
+       //     Muestra /index
+
+       return $this->render('bajaprovincia.html.twig',array('provincias'=>$provincia));
+
+    }
+
 }
