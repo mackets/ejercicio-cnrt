@@ -78,7 +78,7 @@
 
                                 <a class="nav-link" href="/altapais">
 
-                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-pencil"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-address-card"></i></div>
                                     Alta
 
                                 </a>
@@ -87,8 +87,8 @@
 
                                 <a class="nav-link" href="/bajapais">
 
-                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-eraser"></i></div>
-                                    Baja
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                                    Modificación
 
                                 </a>
 
@@ -100,7 +100,7 @@
 
                                 <a class="nav-link" href="/altaprovincia">
 
-                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-pencil"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-address-card"></i></div>
                                     Alta
 
                                 </a>
@@ -109,8 +109,8 @@
 
                                 <a class="nav-link" href="/bajaprovincia">
 
-                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-eraser"></i></div>
-                                    Baja
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                                    Modificación
 
                                 </a>
 
@@ -149,11 +149,13 @@
 
                                             <tr>
 
+                                                <th>Editar</th>
                                                 <th>Id</th>
                                                 <th>Id de País</th>
                                                 <th>Nombre</th>
                                                 <th>Abreviación</th>
                                                 <th>¿Está activo?</th>
+                                                <th><div class="divBorrar">Borrar</div></th>
 
                                             </tr>
 
@@ -167,6 +169,9 @@
 
                                                 <tr>
 
+                                                    <td>
+                                                        <a href="/bajapais"><div class="divEdit"><i class="fa-solid fa-pencil"></i></div></a>
+                                                    </td>
                                                     <td>{{provincia.id}}</td>
                                                     <td>{{provincia.pais}}</td>
                                                     <td>{{provincia.descripcion}}</td>
@@ -177,6 +182,9 @@
                                                     {% else %}
                                                         <td>NO</td>
                                                     {% endif %}
+                                                    <td>
+                                                        <a href="/bajapais"><div class="divBorrar"><i class="fa-solid fa-eraser"></i></div></a>
+                                                    </td>
 
                                                 </tr>
                                                 

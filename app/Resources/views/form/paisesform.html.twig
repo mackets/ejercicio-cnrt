@@ -1,3 +1,5 @@
+<!-- CONFIGURACIÓN DEL FORM_ROW -->
+
 {%- block form_row -%}
 
     <div class="row mb-3">
@@ -14,10 +16,14 @@
 
 {%- endblock form_row -%}
 
+<!-- CONFIGURACIÓN DEL FORM_WIDGET -->
+
 {%- block form_widget_simple -%}
     {%- set type = type|default('text') -%}
     <input type="{{ type }}" class="form-control"{{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 {%- endblock form_widget_simple -%}
+
+<!-- CONFIGURACIÓN DEL BUTTON_WIDGET -->
 
 {%- block button_widget -%}
     {%- if label is empty -%}
@@ -34,6 +40,8 @@
         <div class="d-grid"><button type="{{ type|default('button') }}" class="btn btn-primary btn-block"{{ block('button_attributes') }}>{{ translation_domain is same as(false) or label is same as(false) ? label : label|trans({}, translation_domain) }}</button></div>
     </div>
 {%- endblock button_widget -%}
+
+<!-- CONFIGURACIÓN DEL CHOICE_WIDGET -->
 
 {%- block choice_widget -%}
     
