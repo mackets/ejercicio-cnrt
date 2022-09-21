@@ -104,7 +104,7 @@ class GestionPaisController extends Controller
     //              Enrutamiento a bajaPais
 
     /**
-     * @Route("/bajapais", name="bajapais")
+     * @Route("/modifpais", name="modifpais")
      */
 
 
@@ -118,14 +118,14 @@ class GestionPaisController extends Controller
 
         //     Muestra /index
  
-        return $this->render('bajapais.html.twig',array('paises'=>$pais));
+        return $this->render('modifpais.html.twig',array('paises'=>$pais));
  
      }
 
      //              Enrutamiento a bajaProvincia
 
     /**
-     * @Route("/bajaprovincia", name="bajaprovincia")
+     * @Route("/modifprovincia", name="modifprovincia")
      */
 
 
@@ -139,7 +139,7 @@ class GestionPaisController extends Controller
 
        //     Muestra /index
 
-       return $this->render('bajaprovincia.html.twig',array('provincias'=>$provincia));
+       return $this->render('modifprovincia.html.twig',array('provincias'=>$provincia));
 
     }
 
