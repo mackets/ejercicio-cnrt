@@ -166,8 +166,9 @@
 
                                                 <tr>
                                                     <td>
-                                                        <a href="/modifpais"><div class="divEdit"><i class="fa-solid fa-pencil"></i></div></a>
+                                                        <a href="{{ path ('editPais',{'id':pais.id})}}"><div class="divEdit"><i class="fa-solid fa-pencil"></i></div></a>
                                                     </td>
+                                                     
                                                     <td>{{pais.id}}</td>
                                                     <td>{{pais.descripcion}}</td>
                                                     <td>{{pais.abrev}}</td>

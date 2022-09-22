@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Form\PaisType;
 use AppBundle\Form\ProvinciaType;
+use AppBundle\Form\ModifPaisType;
+use AppBundle\Form\ModifProvinciaType;
 
 use AppBundle\Entity\Pais;
 use AppBundle\Entity\Provincia;
@@ -17,15 +19,25 @@ class GestionPaisController extends Controller
     //              Enrutamiento a alta país
 
     /**
-     * @Route("/altapais", name="altapais")
+     * @Route("/altapais/{id}", name="altapais")
      */
    
 
      //             Ruta principal 
 
-     public function altaPais(Request $request) 
+     public function altaPais(Request $request, $id=null) 
      {
-        $pais = new Pais();
+         if($id)
+
+         {
+            $paisRepository = $this->getDoctrine()->getRepository(Pais::class);
+            $pais = $paisRepository->find($id);
+
+         }else{
+
+            $pais = new Pais();
+
+         }
 
         //          Se construye el formulario
 
@@ -60,15 +72,26 @@ class GestionPaisController extends Controller
      //              Enrutamiento a altaProvincia
 
     /**
-     * @Route("/altaprovincia", name="altaprovincia")
+     * @Route("/altaprovincia/{id}", name="altaprovincia")
      */
 
 
-    public function altaProvincia(Request $request) 
+    public function altaProvincia(Request $request, $id=null) 
     {
 
-      $provincia = new Provincia();
+      if($id)
 
+         {
+            $provinciaRepository = $this->getDoctrine()->getRepository(Provincia::class);
+            $provincia = $provinciaRepository->find($id);
+
+         }else{
+
+            $provincia = new Provincia();
+
+         }
+
+      
       //          Se construye el formulario
 
       $form = $this->createForm(ProvinciaType::class, $provincia);
@@ -101,7 +124,7 @@ class GestionPaisController extends Controller
     }
 
 
-    //              Enrutamiento a bajaPais
+    //              Enrutamiento a modifPais
 
     /**
      * @Route("/modifpais", name="modifpais")
@@ -122,7 +145,7 @@ class GestionPaisController extends Controller
  
      }
 
-     //              Enrutamiento a bajaProvincia
+     //              Enrutamiento a modifProvincia
 
     /**
      * @Route("/modifprovincia", name="modifprovincia")
@@ -142,5 +165,111 @@ class GestionPaisController extends Controller
        return $this->render('modifprovincia.html.twig',array('provincias'=>$provincia));
 
     }
+
+   //              Enrutamiento a EDICION PAÍS
+
+    /**
+     * @Route("/editpais/{id}", name="editPais")
+     */
+   
+
+     //             Ruta principal 
+
+     public function editPais(Request $request, $id=null) 
+     {
+         if($id)
+
+         {
+            $paisRepository = $this->getDoctrine()->getRepository(Pais::class);
+            $pais = $paisRepository->find($id);
+
+         }else{
+
+            $pais = new Pais();
+
+         }
+
+        //          Se construye el formulario
+
+        $form = $this->createForm(ModifPaisType::class, $pais);
+
+        //          Se agarra la información
+
+         $form->handleRequest($request);
+
+        //          Si es válida entra al if y se almacena
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            //      Se rellena la info
+
+            $pais = $form->getData();
+
+            //      Se almacena el pais en la base de datos
+
+            $em= $this->getDoctrine()->getManager();
+            $em->persist($pais);
+            $em->flush();
+            return $this->redirectToRoute('paises');
+        }
+
+        //     Muestra /index
+ 
+        return $this->render('editPais.html.twig',array('form'=> $form->createView()));
+ 
+      }
+
+         //              Enrutamiento a EDICION PROVINCIA
+
+    /**
+     * @Route("/editprovincia/{id}", name="editProvincia")
+     */
+   
+
+     //             Ruta principal 
+
+     public function editProvincia(Request $request, $id=null) 
+     {
+         if($id)
+
+         {
+            $provinciaRepository = $this->getDoctrine()->getRepository(Provincia::class);
+            $provincia = $provinciaRepository->find($id);
+
+         }else{
+
+            $provincia = new Provincia();
+
+         }
+
+        //          Se construye el formulario
+
+        $form = $this->createForm(ModifProvinciaType::class, $provincia);
+
+        //          Se agarra la información
+
+         $form->handleRequest($request);
+
+        //          Si es válida entra al if y se almacena
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            //      Se rellena la info
+
+            $pais = $form->getData();
+
+            //      Se almacena el pais en la base de datos
+
+            $em= $this->getDoctrine()->getManager();
+            $em->persist($provincia);
+            $em->flush();
+            return $this->redirectToRoute('provincias');
+        }
+
+        //     Muestra /index
+ 
+        return $this->render('editProvincia.html.twig',array('form'=> $form->createView()));
+ 
+      }
 
 }
