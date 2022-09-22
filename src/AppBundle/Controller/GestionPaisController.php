@@ -168,108 +168,166 @@ class GestionPaisController extends Controller
 
    //              Enrutamiento a EDICION PAÍS
 
-    /**
-     * @Route("/editpais/{id}", name="editPais")
-     */
+   /**
+   * @Route("/editpais/{id}", name="editPais")
+   */
    
 
-     //             Ruta principal 
+   //             Ruta principal 
 
-     public function editPais(Request $request, $id=null) 
-     {
-         if($id)
+   public function editPais(Request $request, $id=null) 
+   {
+      if($id)
 
-         {
-            $paisRepository = $this->getDoctrine()->getRepository(Pais::class);
-            $pais = $paisRepository->find($id);
+      {
+         $paisRepository = $this->getDoctrine()->getRepository(Pais::class);
+         $pais = $paisRepository->find($id);
 
-         }else{
+      }else{
 
-            $pais = new Pais();
+         $pais = new Pais();
 
-         }
-
-        //          Se construye el formulario
-
-        $form = $this->createForm(ModifPaisType::class, $pais);
-
-        //          Se agarra la información
-
-         $form->handleRequest($request);
-
-        //          Si es válida entra al if y se almacena
-
-        if($form->isSubmitted() && $form->isValid()){
-
-            //      Se rellena la info
-
-            $pais = $form->getData();
-
-            //      Se almacena el pais en la base de datos
-
-            $em= $this->getDoctrine()->getManager();
-            $em->persist($pais);
-            $em->flush();
-            return $this->redirectToRoute('paises');
-        }
-
-        //     Muestra /index
- 
-        return $this->render('editPais.html.twig',array('form'=> $form->createView()));
- 
       }
 
-         //              Enrutamiento a EDICION PROVINCIA
+      //          Se construye el formulario
 
-    /**
-     * @Route("/editprovincia/{id}", name="editProvincia")
-     */
+      $form = $this->createForm(ModifPaisType::class, $pais);
+
+      //          Se agarra la información
+
+      $form->handleRequest($request);
+
+      //          Si es válida entra al if y se almacena
+
+      if($form->isSubmitted() && $form->isValid()){
+
+         //      Se rellena la info
+
+         $pais = $form->getData();
+
+         //      Se almacena el pais en la base de datos
+
+         $em= $this->getDoctrine()->getManager();
+         $em->persist($pais);
+         $em->flush();
+         return $this->redirectToRoute('paises');
+      }
+
+      //     Muestra /index
+ 
+      return $this->render('editPais.html.twig',array('form'=> $form->createView()));
+ 
+   }
+
+   //              Enrutamiento a EDICION PROVINCIA
+
+   /**
+   * @Route("/editprovincia/{id}", name="editProvincia")
+   */
    
 
-     //             Ruta principal 
+   //             Ruta principal 
 
-     public function editProvincia(Request $request, $id=null) 
-     {
-         if($id)
+   public function editProvincia(Request $request, $id=null) 
+   {
+      if($id)
 
-         {
-            $provinciaRepository = $this->getDoctrine()->getRepository(Provincia::class);
-            $provincia = $provinciaRepository->find($id);
+      {
+         $provinciaRepository = $this->getDoctrine()->getRepository(Provincia::class);
+         $provincia = $provinciaRepository->find($id);
 
-         }else{
+      }else{
 
-            $provincia = new Provincia();
+         $provincia = new Provincia();
 
-         }
-
-        //          Se construye el formulario
-
-        $form = $this->createForm(ModifProvinciaType::class, $provincia);
-
-        //          Se agarra la información
-
-         $form->handleRequest($request);
-
-        //          Si es válida entra al if y se almacena
-
-        if($form->isSubmitted() && $form->isValid()){
-
-            //      Se rellena la info
-
-            $pais = $form->getData();
-
-            //      Se almacena el pais en la base de datos
-
-            $em= $this->getDoctrine()->getManager();
-            $em->persist($provincia);
-            $em->flush();
-            return $this->redirectToRoute('provincias');
-        }
-
-        //     Muestra /index
- 
-        return $this->render('editProvincia.html.twig',array('form'=> $form->createView()));
- 
       }
+
+      //          Se construye el formulario
+
+      $form = $this->createForm(ModifProvinciaType::class, $provincia);
+
+      //          Se agarra la información
+
+      $form->handleRequest($request);
+
+      //          Si es válida entra al if y se almacena
+
+      if($form->isSubmitted() && $form->isValid()){
+
+         //      Se rellena la info
+
+         $pais = $form->getData();
+
+         //      Se almacena el pais en la base de datos
+
+         $em= $this->getDoctrine()->getManager();
+         $em->persist($provincia);
+         $em->flush();
+         return $this->redirectToRoute('provincias');
+      }
+
+      //     Muestra /index
+ 
+      return $this->render('editProvincia.html.twig',array('form'=> $form->createView()));
+ 
+   }
+
+   //              Enrutamiento a borrado de país
+
+   /**
+   * @Route("/borrarpais/{id}", name="borrarPais")
+   */
+   
+
+   //             Ruta principal 
+
+   public function borrarPais(Request $request, $id=null) 
+   {
+
+      if($id)
+
+      {
+         //busqueda
+         $paisRepository = $this->getDoctrine()->getRepository(Pais::class);
+         $pais = $paisRepository->find($id);
+         //borrado
+         $em= $this->getDoctrine()->getManager();
+         $em->remove($pais);
+         $em->flush();
+
+      }
+
+      return $this->redirectToRoute('paises');
+      
+   }
+
+   //              Enrutamiento a borrado de provincia
+
+   /**
+   * @Route("/borrarprovincia/{id}", name="borrarProvincia")
+   */
+   
+
+   //             Ruta principal 
+
+   public function borrarProvincia(Request $request, $id=null) 
+   {
+
+      if($id)
+
+      {
+         //busqueda
+         $provinciaRepository = $this->getDoctrine()->getRepository(Provincia::class);
+         $provincia = $provinciaRepository->find($id);
+         //borrado
+         $em= $this->getDoctrine()->getManager();
+         $em->remove($provincia);
+         $em->flush();
+
+      }
+
+      return $this->redirectToRoute('provincias');
+      
+   }
 
 }
