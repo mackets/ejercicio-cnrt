@@ -184,7 +184,7 @@
                                                         <td>NO</td>
                                                     {% endif %}
                                                     <td>
-                                                        <a href="{{ path ('borrarProvincia',{'id':provincia.id})}}"><div class="divBorrar"><i class="fa-solid fa-eraser"></i></div></a>
+                                                        <a href="#"><div class="divBorrar" onclick="return ctrlProvincia('{{ path ('borrarProvincia',{'id':provincia.id})}}','{{provincia.descripcion}}');"><i class="fa-solid fa-eraser"></i></div></a>
                                                     </td>
 
                                                 </tr>
@@ -225,7 +225,6 @@
 
         {% block javascripts %}
 
-            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
             <script src="js/scripts.js"></script>
@@ -234,6 +233,8 @@
             <script src="assets/demo/chart-bar-demo.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
             <script src="js/datatables-simple-demo.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script src="js/control-borrado.js"></script>
             
         {% endblock %}
 
