@@ -41,3 +41,8 @@ function ctrlProvincia(path,nombre)
 
 }
 
+function modPais(){
+    swal("Se modificó el país!", "You clicked the button!", "success");
+    
+}
+
