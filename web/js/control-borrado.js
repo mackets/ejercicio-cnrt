@@ -9,8 +9,9 @@ function ctrlPais(path,nombre)
       })
       .then((willDelete) => {
         if (willDelete) {
+            
 
-          window.location.replace(path);
+          window.location.replace(path)
           
         }
       });
