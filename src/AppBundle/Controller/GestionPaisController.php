@@ -292,7 +292,10 @@ class GestionPaisController extends Controller
          $pais = $paisRepository->find($id);
          //borrado
          $em= $this->getDoctrine()->getManager();
-         $em->remove($pais);
+         
+         // Cambiar activo a 0 en vez de borrar
+
+         $pais->setActivo(false);
          $em->flush();
 
       }
@@ -321,7 +324,10 @@ class GestionPaisController extends Controller
          $provincia = $provinciaRepository->find($id);
          //borrado
          $em= $this->getDoctrine()->getManager();
-         $em->remove($provincia);
+
+         // Cambiar activo a 0 en vez de borrar
+
+         $provincia->setActivo(false);
          $em->flush();
 
       }
